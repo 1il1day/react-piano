@@ -34,10 +34,10 @@ export default function App () {
           <PianoKey key={key.code} code={key.code} text={key.text}/>
         ))}
         <PianoSharpWrap>
-          {pianoSharps.map((sharps)=>(
-            <PianoSharpInner>
+          {pianoSharps.map((sharps, index)=>(
+            <PianoSharpInner key={index}>
               {sharps.map((sharp)=>(
-                <PianoKey code={sharp.code} text={sharp.text} sharp/>
+                <PianoKey key={sharp.code} code={sharp.code} text={sharp.text} sharp/>
               ))}
             </PianoSharpInner>
           ))}
