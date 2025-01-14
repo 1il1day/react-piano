@@ -30,8 +30,8 @@ export default function PianoKey({code, text, volume = 1, sharp = false}: Props)
 
   return (
     <>
-      <PianoButton onClick={()=>{onClickBtn(code)}} sharp={sharp}>
-        <PianoText bgColor={randomColor}>{text}</PianoText>
+      <PianoButton onClick={()=>{onClickBtn(code)}} $sharp={sharp}>
+        <PianoText $bgColor={randomColor}>{text}</PianoText>
       </PianoButton>
     </>
   )
@@ -48,7 +48,7 @@ const sharpStyles = css`
   }
   `;
 
-const PianoButton = styled.button<{sharp?: boolean}>`
+const PianoButton = styled.button<{$sharp?: boolean}>`
   position: relative;
   width: 100px;
   height: 400px;
@@ -57,10 +57,10 @@ const PianoButton = styled.button<{sharp?: boolean}>`
   &:active{
     background-color: #cccccc;
   }
-  ${({sharp})=>sharp && sharpStyles}
+  ${({$sharp})=>$sharp && sharpStyles}
 `;
 
-const PianoText = styled.span<{bgColor: string}>`
+const PianoText = styled.span<{$bgColor: string}>`
   position: absolute;
   left: 50%;
   bottom: 15px;
@@ -70,7 +70,7 @@ const PianoText = styled.span<{bgColor: string}>`
   justify-content: center;
   width: 50px;
   height: 50px;
-  background-color: ${({bgColor}) => bgColor};
+  background-color: ${({$bgColor}) => $bgColor};
   border-radius: 50%;
   color: #333;
 `;
