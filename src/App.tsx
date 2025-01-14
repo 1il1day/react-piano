@@ -3,27 +3,44 @@ import PianoKey from './PianoCode';
 
 export default function App () {
 
+  const pianoKeys = [
+    { code: "C4", text: "도" },
+    { code: "D4", text: "레" },
+    { code: "E4", text: "미" },
+    { code: "F4", text: "파" },
+    { code: "G4", text: "솔" },
+    { code: "A4", text: "라" },
+    { code: "B4", text: "시" },
+    { code: "C5", text: "도" },
+  ];
+
+  const pianoSharps = [
+    [
+      { code: "C4s", text: "도#" },
+      { code: "D4s", text: "레#" },
+    ],
+    [
+      { code: "F4s", text: "파#" },
+      { code: "G4s", text: "솔#" },
+      { code: "A4s", text: "라#" },
+    ],
+    
+  ]
+
   return (
     <PianoContainer>
       <PianoInner>
-        <PianoKey code="C4" text="도"/>
-        <PianoKey code="D4" text="레"/>
-        <PianoKey code="E4" text="미"/>
-        <PianoKey code="F4" text="파"/>
-        <PianoKey code="G4" text="솔"/>
-        <PianoKey code="A4" text="라"/>
-        <PianoKey code="B4" text="시"/>
-        <PianoKey code="C5" text="도"/>
+        {pianoKeys.map((key)=>(
+          <PianoKey key={key.code} code={key.code} text={key.text}/>
+        ))}
         <PianoSharpWrap>
-          <PianoSharpInner>
-            <PianoKey code="C4s" text="도#" sharp/>
-            <PianoKey code="D4s" text="레#" sharp/>
-          </PianoSharpInner>
-          <PianoSharpInner>
-            <PianoKey code="F4s" text="파#" sharp/>
-            <PianoKey code="G4s" text="솔#" sharp/>
-            <PianoKey code="A4s" text="라#" sharp/>
-          </PianoSharpInner>
+          {pianoSharps.map((sharps)=>(
+            <PianoSharpInner>
+              {sharps.map((sharp)=>(
+                <PianoKey code={sharp.code} text={sharp.text} sharp/>
+              ))}
+            </PianoSharpInner>
+          ))}
         </PianoSharpWrap>
       </PianoInner>
     </PianoContainer>
