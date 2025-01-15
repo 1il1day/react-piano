@@ -11,18 +11,8 @@ type Props = {
 
 
 export default function PianoKey({code, text, volume = 1, sharp = false, keyMap}: Props) {
+  const [randomColor, setRandomColor] = useState('');
   const [isActive, setIsActive] = useState(false);
-  const bgColors=[
-    '#FFD1DC',
-    '#FFB3BA',
-    '#FFCCCB',
-    '#B3E0FF',
-    '#D9E2F1',
-    '#C2F0C2',
-    '#FFF5BA',
-    '#D7A6FF',
-  ]
-  const randomColor = bgColors[Math.floor(Math.random()*bgColors.length)];
 
   /**
    * 피아노 사운드 재생 함수
@@ -33,8 +23,21 @@ export default function PianoKey({code, text, volume = 1, sharp = false, keyMap}
     
     audio.volume = volume;
     audio.play();
-
   }
+
+  useEffect(()=>{
+    const bgColors=[
+      '#FFD1DC',
+      '#FFB3BA',
+      '#FFCCCB',
+      '#B3E0FF',
+      '#D9E2F1',
+      '#C2F0C2',
+      '#FFF5BA',
+      '#D7A6FF',
+    ]
+    setRandomColor(bgColors[Math.floor(Math.random()*bgColors.length)]);
+  },[])
   
   useEffect(()=>{
     /**
