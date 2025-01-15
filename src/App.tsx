@@ -28,36 +28,67 @@ export default function App () {
   ]
 
   return (
-    <PianoContainer>
-      <PianoInner>
-        {pianoKeys.map((key)=>(
-          <PianoKey key={key.code} code={key.code} text={key.text}/>
-        ))}
-        <PianoSharpWrap>
-          {pianoSharps.map((sharps, index)=>(
-            <PianoSharpInner key={index}>
-              {sharps.map((sharp)=>(
-                <PianoKey key={sharp.code} code={sharp.code} text={sharp.text} sharp/>
-              ))}
-            </PianoSharpInner>
+    <Container>
+      <InfoContainer>
+        <InfoTitle>리액트 피아노</InfoTitle>
+      </InfoContainer>
+      <PianoContainer>
+        <PianoInner>
+          {pianoKeys.map((key)=>(
+            <PianoKey key={key.code} code={key.code} text={key.text}/>
           ))}
-        </PianoSharpWrap>
-      </PianoInner>
-    </PianoContainer>
+          <PianoSharpWrap>
+            {pianoSharps.map((sharps, index)=>(
+              <PianoSharpInner key={index}>
+                {sharps.map((sharp)=>(
+                  <PianoKey key={sharp.code} code={sharp.code} text={sharp.text} sharp/>
+                ))}
+              </PianoSharpInner>
+            ))}
+          </PianoSharpWrap>
+        </PianoInner>
+      </PianoContainer>
+    </Container>
   )
 }
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #3f3f3f;
+`;
+const InfoContainer = styled.div`
+  max-width: 400px;
+  padding: 100px 50px;
+  font-size: 32px;
+  color: #333;
+`;
+const InfoTitle = styled.h2`
+  position: relative;
+  padding: 20px 40px;
+  background-color: #f7f7f7;
+  &::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -79px;
+    width: 80px;
+    height: 100%;
+    background: #ffdc13;
+  }
+`;
 const PianoContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   overflow-x: hidden;
   width: 100%;
-  background-color: #3f3f3f;
-  border: 1px solid #999;
 `;
 const PianoInner = styled.div`
   position: relative;
+  display: flex;
+  flex-wrap: nowrap;
 `;
 const PianoSharpWrap = styled.div``;
 const PianoSharpInner = styled.div`
