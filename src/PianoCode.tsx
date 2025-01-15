@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 type Props = {
@@ -5,16 +6,11 @@ type Props = {
   text: string;
   volume?: number;
   sharp?: boolean;
+  keyMap: string;
 }
 
-export default function PianoKey({code, text, volume = 1, sharp = false}: Props) {
-  const onClickBtn = (code: string) => {
-    const audio = new Audio(`/sound/${code}.mp3`);
-    
-    audio.volume = volume;
-    audio.play();
-  }
 
+export default function PianoKey({code, text, volume = 1, sharp = false, keyMap}: Props) {
   const bgColors=[
     '#FFD1DC',
     '#FFB3BA',
@@ -25,12 +21,38 @@ export default function PianoKey({code, text, volume = 1, sharp = false}: Props)
     '#FFF5BA',
     '#D7A6FF',
   ]
-
   const randomColor = bgColors[Math.floor(Math.random()*bgColors.length)];
+
+  /**
+   * 피아노 사운드 재생 함수
+   * @param code 피아노 코드
+   */
+  const playCode = (code: string) => {
+    const audio = new Audio(`/sound/${code}.mp3`);
+    
+    audio.volume = volume;
+    audio.play();
+
+  }
+  
+  useEffect(()=>{
+    /**
+     * KeyDown시 피아노 사운드 재생
+     */
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if(event.key == keyMap){
+        playCode(code);
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+    return () => { // cleanUp
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  },[code, volume, keyMap])
 
   return (
     <>
-      <PianoButton onClick={()=>{onClickBtn(code)}} $sharp={sharp}>
+      <PianoButton onClick={()=>{playCode(code)}} $sharp={sharp}>
         <PianoText $bgColor={randomColor}>{text}</PianoText>
       </PianoButton>
     </>

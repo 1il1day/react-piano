@@ -4,25 +4,25 @@ import PianoKey from './PianoCode';
 export default function App () {
 
   const pianoKeys = [
-    { code: "C4", text: "도" },
-    { code: "D4", text: "레" },
-    { code: "E4", text: "미" },
-    { code: "F4", text: "파" },
-    { code: "G4", text: "솔" },
-    { code: "A4", text: "라" },
-    { code: "B4", text: "시" },
-    { code: "C5", text: "도" },
+    { code: "C4", text: "도", map:'a' },
+    { code: "D4", text: "레", map:'s' },
+    { code: "E4", text: "미", map:'d' },
+    { code: "F4", text: "파", map:'f' },
+    { code: "G4", text: "솔", map:'h' },
+    { code: "A4", text: "라", map:'j' },
+    { code: "B4", text: "시", map:'k' },
+    { code: "C5", text: "도", map:'l' },
   ];
 
   const pianoSharps = [
     [
-      { code: "C4s", text: "도#" },
-      { code: "D4s", text: "레#" },
+      { code: "C4s", text: "도#", map:'w' },
+      { code: "D4s", text: "레#", map:'e' },
     ],
     [
-      { code: "F4s", text: "파#" },
-      { code: "G4s", text: "솔#" },
-      { code: "A4s", text: "라#" },
+      { code: "F4s", text: "파#", map:'u' },
+      { code: "G4s", text: "솔#", map:'i' },
+      { code: "A4s", text: "라#", map:'o' },
     ],
     
   ]
@@ -35,13 +35,13 @@ export default function App () {
       <PianoContainer>
         <PianoInner>
           {pianoKeys.map((key)=>(
-            <PianoKey key={key.code} code={key.code} text={key.text}/>
+            <PianoKey key={key.code} code={key.code} text={key.text} keyMap={key.map}/>
           ))}
           <PianoSharpWrap>
             {pianoSharps.map((sharps, index)=>(
               <PianoSharpInner key={index}>
                 {sharps.map((sharp)=>(
-                  <PianoKey key={sharp.code} code={sharp.code} text={sharp.text} sharp/>
+                  <PianoKey key={sharp.code} code={sharp.code} text={sharp.text} sharp  keyMap={sharp.map}/>
                 ))}
               </PianoSharpInner>
             ))}
