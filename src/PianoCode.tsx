@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 type Props = {
@@ -11,6 +11,7 @@ type Props = {
 
 
 export default function PianoKey({code, text, volume = 1, sharp = false, keyMap}: Props) {
+  const [isActive, setIsActive] = useState(false);
   const bgColors=[
     '#FFD1DC',
     '#FFB3BA',
@@ -40,26 +41,37 @@ export default function PianoKey({code, text, volume = 1, sharp = false, keyMap}
      * KeyDown시 피아노 사운드 재생
      */
     const handleKeyDown = (event: KeyboardEvent) => {
-      if(event.key == keyMap){
+      if(event.key == keyMap && !isActive){
+        setIsActive(true);
         playCode(code);
       }
     }
+    /**
+     * KeyUp시
+     */
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if(event.key == keyMap){
+        setIsActive(false);
+      }
+    }
     window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
     return () => { // cleanUp
       window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
     };
-  },[code, volume, keyMap])
+  },[code, volume, keyMap, isActive])
 
   return (
     <>
-      <PianoButton onClick={()=>{playCode(code)}} $sharp={sharp}>
+      <PianoButton onClick={()=>{playCode(code)}} $sharp={sharp} isActive={isActive}>
         <PianoText $bgColor={randomColor}>{text}</PianoText>
       </PianoButton>
     </>
   )
 }
 
-const sharpStyles = css`
+const sharpStyles = css<{isActive: boolean}>`
   position: relative;
   background-color: #1C1E1D;
   width: 90px;
@@ -68,9 +80,13 @@ const sharpStyles = css`
   &:active{
     background-color: #000;
   }
-  `;
+  ${({isActive})=>isActive && css`
+    background-color: #000;
+  `}
 
-const PianoButton = styled.button<{$sharp?: boolean}>`
+`;
+
+const PianoButton = styled.button<{$sharp?: boolean, isActive: boolean}>`
   position: relative;
   width: 100px;
   height: 400px;
@@ -79,6 +95,9 @@ const PianoButton = styled.button<{$sharp?: boolean}>`
   &:active{
     background-color: #cccccc;
   }
+  ${({isActive})=>isActive && css`
+    background-color: #cccccc;
+  `}
   ${({$sharp})=>$sharp && sharpStyles}
 `;
 
