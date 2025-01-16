@@ -31,6 +31,25 @@ export default function App () {
     <Container>
       <InfoContainer>
         <InfoTitle>리액트 피아노</InfoTitle>
+        <InfoDescWrap>
+          <InfoDesc>
+            <span>a</span> 도(C4)<br/> 
+            <span>s</span> 레(D4)<br/>
+            <span>d</span> 미(E4)<br/>
+            <span>f</span> 파(F4)<br/>
+            <span>h</span> 솔(G4)<br/>
+            <span>j</span> 라(A4)<br/>
+            <span>k</span> 시(B4)<br/>
+            <span>l</span> 도(C5)
+          </InfoDesc>
+          <InfoDesc>
+            <span>w</span> 도#(C4#)<br/> 
+            <span>e</span> 레#(D4#)<br/>
+            <span>u</span> 파#(F4#)<br/>
+            <span>i</span> 솔#(G4#)<br/>
+            <span>o</span> 라#(A4#)<br/>
+          </InfoDesc>
+        </InfoDescWrap>
       </InfoContainer>
       <PianoContainer>
         <PianoInner>
@@ -59,15 +78,21 @@ const Container = styled.div`
   background-color: #3f3f3f;
 `;
 const InfoContainer = styled.div`
-  max-width: 400px;
-  padding: 100px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 320px;
+  padding: 60px 0 40px;
   font-size: 32px;
   color: #333;
 `;
 const InfoTitle = styled.h2`
   position: relative;
-  padding: 20px 40px;
+  width: 240px;
+  padding: 20px 0;
+  text-align: center;
   background-color: #f7f7f7;
+  transform: translateX(calc(-80px / 2));
   &::after{
     content: "";
     position: absolute;
@@ -76,6 +101,26 @@ const InfoTitle = styled.h2`
     width: 80px;
     height: 100%;
     background: #ffdc13;
+  }
+`;
+const InfoDescWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  background-color: #f7f7f7;
+  margin-top: 10px;
+`;
+const InfoDesc = styled.p`
+  position: relative;
+  padding: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  span{
+    display: inline-block;
+    min-width: 10px;
+    color: #999;
   }
 `;
 const PianoContainer = styled.div`
