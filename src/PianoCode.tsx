@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 type Props = {
@@ -18,12 +18,11 @@ export default function PianoKey({code, text, volume = 1, sharp = false, keyMap}
    * 피아노 사운드 재생 함수
    * @param code 피아노 코드
    */
-  const playCode = (code: string) => {
-    const audio = new Audio(`/sound/${code}.mp3`);
-    
+  const playCode = useCallback((code: string) => {
+    const audio = new Audio(`${process.env.PUBLIC_URL}/sound/${code}.mp3`);
     audio.volume = volume;
     audio.play();
-  }
+  }, [volume]);
 
   useEffect(()=>{
     const bgColors=[
@@ -44,7 +43,7 @@ export default function PianoKey({code, text, volume = 1, sharp = false, keyMap}
      * KeyDown시 피아노 사운드 재생
      */
     const handleKeyDown = (event: KeyboardEvent) => {
-      if(event.key == keyMap && !isActive){
+      if(event.key === keyMap && !isActive){
         setIsActive(true);
         playCode(code);
       }
@@ -53,7 +52,7 @@ export default function PianoKey({code, text, volume = 1, sharp = false, keyMap}
      * KeyUp시
      */
     const handleKeyUp = (event: KeyboardEvent) => {
-      if(event.key == keyMap){
+      if(event.key === keyMap){
         setIsActive(false);
       }
     }
@@ -63,7 +62,7 @@ export default function PianoKey({code, text, volume = 1, sharp = false, keyMap}
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  },[code, volume, keyMap, isActive])
+  },[code, volume, keyMap, isActive, playCode])
 
   return (
     <>
