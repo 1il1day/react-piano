@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-piano.github.io/static/css/main.fbc30fa2.css",
-    "main.js": "/react-piano.github.io/static/js/main.a980894b.js",
-    "static/js/453.e448b2a0.chunk.js": "/react-piano.github.io/static/js/453.e448b2a0.chunk.js",
-    "index.html": "/react-piano.github.io/index.html",
-    "main.fbc30fa2.css.map": "/react-piano.github.io/static/css/main.fbc30fa2.css.map",
-    "main.a980894b.js.map": "/react-piano.github.io/static/js/main.a980894b.js.map",
-    "453.e448b2a0.chunk.js.map": "/react-piano.github.io/static/js/453.e448b2a0.chunk.js.map"
+    "main.css": "/react-piano/static/css/main.fbc30fa2.css",
+    "main.js": "/react-piano/static/js/main.5d11a620.js",
+    "static/js/453.e448b2a0.chunk.js": "/react-piano/static/js/453.e448b2a0.chunk.js",
+    "index.html": "/react-piano/index.html",
+    "main.fbc30fa2.css.map": "/react-piano/static/css/main.fbc30fa2.css.map",
+    "main.5d11a620.js.map": "/react-piano/static/js/main.5d11a620.js.map",
+    "453.e448b2a0.chunk.js.map": "/react-piano/static/js/453.e448b2a0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fbc30fa2.css",
-    "static/js/main.a980894b.js"
+    "static/js/main.5d11a620.js"
   ]
 }
