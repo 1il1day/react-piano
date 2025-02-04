@@ -74,27 +74,19 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 320px;
-  padding: 60px 0 40px;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 40px;
+  padding: 40px;
   font-size: 32px;
+  background-color: #f7f7f7;
   color: #333;
 `;
 const InfoTitle = styled.h2`
   position: relative;
-  width: 240px;
-  padding: 20px 0;
   text-align: center;
+  font-weight: 600;
   background-color: #f7f7f7;
-  transform: translateX(calc(-80px / 2));
-  &::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    right: -79px;
-    width: 80px;
-    height: 100%;
-    background: #ffdc13;
-  }
 `;
 const InfoDescWrap = styled.div`
   display: flex;
@@ -102,11 +94,10 @@ const InfoDescWrap = styled.div`
   gap: 20px;
   width: 100%;
   background-color: #f7f7f7;
-  margin-top: 10px;
 `;
 const InfoDesc = styled.p`
   position: relative;
-  padding: 20px;
+  padding: 10px 20px;
   font-size: 16px;
   line-height: 1.6;
   color: #333;
