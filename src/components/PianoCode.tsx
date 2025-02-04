@@ -9,7 +9,6 @@ type Props = {
   keyMap: string;
 }
 
-
 export default function PianoKey({code, text, volume = 1, sharp = false, keyMap}: Props) {
   const [randomColor, setRandomColor] = useState('');
   const [isActive, setIsActive] = useState(false);
